@@ -27,8 +27,7 @@ hamMenu.addEventListener('click', () => {
 window.addEventListener('DOMContentLoaded', () => {
       if (window.innerWidth >= parseInt('700')) {
         console.log('Eslla inspired me! Thanks, Eslla!')
-
-
+      //   alert(window.innerWidth);
         console.log("Hello");
         themeTogglerLi.removeChild(themeTogglerBtn);
         navListPrimary.removeChild(themeTogglerLi);
