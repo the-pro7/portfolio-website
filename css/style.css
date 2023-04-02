@@ -82,6 +82,7 @@ body {
   background-color: #212529;
   font-family: "Comfortaa", cursive;
   color: rgb(255, 255, 255);
+  overflow-x: hidden;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -198,7 +199,7 @@ header .hero-section {
 }
 header .hero-section .hero-text-section {
   text-align: center;
-  padding: 3em 1.5em;
+  padding: 3em 3em;
 }
 header .hero-section .hero-text-section .role {
   text-transform: uppercase;
@@ -225,10 +226,10 @@ header .hero-section .hero-text-section .hero-btns {
 header .hero-section .hero-text-section .hero-btns > .hero-link {
   text-decoration: none;
   color: rgb(255, 255, 255);
-  padding: 0.6em 2.5em;
   border-radius: 40px;
 }
 header .hero-section .hero-text-section .hero-btns .hero-link:first-of-type {
+  padding: 0.6em 2.5em;
   background-color: #287EFF;
   border: 2px solid #287EFF;
 }
@@ -238,11 +239,22 @@ header .hero-section .hero-text-section .hero-btns .hero-link:last-of-type {
   align-items: center;
   justify-content: center;
   border: 2px solid #fff;
+  position: relative;
+  padding: 0.6em 3em;
 }
 header .hero-section .hero-text-section .hero-btns .hero-link:last-of-type svg {
   display: inline-block;
+  opacity: 0;
+  transition: transform 200ms;
+  position: absolute;
+  right: 1.5em;
+  transform: translateX(-40px);
   width: 15px;
   fill: #CED4DA;
+}
+header .hero-section .hero-text-section .hero-btns .hero-link:last-of-type:hover svg {
+  transform: translateX(0px);
+  opacity: revert;
 }
 header .hero-section .hero-text-section .scroll-down {
   width: -moz-fit-content;
@@ -256,13 +268,13 @@ header .hero-section .hero-text-section .scroll-down {
   margin-top: 1em;
 }
 header .hero-section .hero-text-section .scroll-down svg {
-  animation: glideSortof 1s infinite alternate-reverse both;
+  animation: glideSortOf 1s infinite alternate-reverse both;
   width: 30px;
 }
 header .hero-section .hero-text-section .scroll-down svg path {
   fill: rgb(255, 255, 255);
 }
-@keyframes glideSortof {
+@keyframes glideSortOf {
   from {
     transform: translateY(-5px);
   }
@@ -274,7 +286,7 @@ header .hero-section .hero-img-circles img.p-absolute {
   position: absolute;
   bottom: 0;
   z-index: -1;
-  opacity: 0.5;
+  opacity: 0.3;
 }
 
 .hamburger-menu.active {
@@ -308,4 +320,226 @@ header .hero-section .hero-img-circles img.p-absolute {
 }
 .nav ul.show .theme-li.margin-auto-top {
   margin-block: auto 3em;
+}
+
+@media screen and (min-width: 720px) {
+  body header .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    gap: unset;
+    position: relative;
+    padding-right: revert;
+  }
+  body header .nav > *:not(.hamburger-menu) {
+    padding: 1em;
+  }
+  body header .nav > ul {
+    display: flex;
+    list-style-type: none;
+  }
+  body header .nav > ul li a {
+    text-decoration: none;
+    color: rgba(255, 255, 244, 0.5);
+  }
+  body header .nav > ul .no-mobile-display {
+    display: block;
+    border: 2px solid #287EFF;
+    padding: 0.5em 2em;
+    border-radius: 40px;
+    background-color: #287EFF;
+  }
+  body header .nav > ul .no-mobile-display a {
+    color: #fff;
+  }
+  body header .nav .logo-div {
+    width: -moz-max-content;
+    width: max-content;
+    position: revert;
+  }
+  body header .nav .logo-div a svg {
+    width: 85px;
+  }
+  body header .nav .nav_list {
+    margin: 0;
+    padding: 0;
+    height: revert;
+    position: revert;
+    flex-direction: row;
+    align-items: center;
+    gap: clamp(1em, 2vw, 3em);
+    width: revert;
+    background-color: revert;
+    box-shadow: revert;
+    transform: translateX(0%);
+    z-index: revert;
+  }
+  body header .nav .nav_list > *:not(.theme-li) {
+    padding: 0;
+    cursor: pointer;
+    transition: all 350ms;
+  }
+  body header .nav .nav_list > *:hover {
+    background-color: revert !important;
+  }
+  body header .nav .nav_list > *:hover a {
+    color: rgb(255, 255, 255) !important;
+  }
+  body header .nav .nav_list > li:has(a[aria-current=page]) {
+    background-color: revert;
+  }
+  body header .nav .nav_list > li a[aria-current=page] {
+    color: rgb(255, 255, 255) !important;
+  }
+  body header .nav .nav_list .margin-auto-top {
+    margin-top: revert;
+  }
+  body header .nav .two-item-nav_list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 1em;
+    padding-left: 1em;
+  }
+  body header .nav .two-item-nav_list .github-link a img {
+    width: 40px;
+  }
+  body header .nav .hamburger-menu {
+    display: none;
+  }
+  body header .nav .hamburger-menu > * {
+    transition: transform 250ms;
+    height: 5px;
+    border-radius: 5px;
+    background: rgb(255, 255, 255);
+  }
+  body header .nav .hamburger-menu .line2 {
+    width: 25px;
+  }
+  body header .hero-section {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+  body header .hero-section .hero-text-section {
+    text-align: left;
+    padding: 6em 3em 3em;
+  }
+  body header .hero-section .hero-text-section .role {
+    text-transform: uppercase;
+  }
+  body header .hero-section .hero-text-section .developer-name {
+    text-transform: capitalize;
+    line-height: 1.1;
+    font-size: clamp(3rem, 30%, 7rem);
+    margin: 0.5em 0;
+  }
+  body header .hero-section .hero-text-section .developer-text {
+    text-transform: capitalize;
+    margin: 1.5em 0 2em;
+    line-height: 1.5;
+    font-weight: 300;
+  }
+  body header .hero-section .hero-text-section .hero-btns {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    flex-direction: row;
+    gap: 1.5em;
+  }
+  body header .hero-section .hero-text-section .hero-btns > .hero-link {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    border-radius: 40px;
+  }
+  body header .hero-section .hero-text-section .hero-btns .hero-link:first-of-type {
+    padding: 0.6em 2.5em;
+    background-color: #287EFF;
+    border: 2px solid #287EFF;
+  }
+  body header .hero-section .hero-text-section .hero-btns .hero-link:last-of-type {
+    display: flex;
+    gap: 0.3em;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #fff;
+    position: relative;
+    padding: 0.6em 3em;
+  }
+  body header .hero-section .hero-text-section .hero-btns .hero-link:last-of-type svg {
+    display: inline-block;
+    opacity: 0;
+    transition: transform 200ms;
+    position: absolute;
+    right: 1.5em;
+    transform: translateX(-40px);
+    width: 15px;
+    fill: #CED4DA;
+  }
+  body header .hero-section .hero-text-section .hero-btns .hero-link:last-of-type:hover svg {
+    transform: translateX(0px);
+    opacity: revert;
+  }
+  body header .hero-section .hero-text-section .scroll-down {
+    width: -moz-fit-content;
+    width: fit-content;
+    margin: unset;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: unset;
+    margin-top: 1.5em;
+  }
+  body header .hero-section .hero-text-section .scroll-down .scroll-text {
+    display: none;
+  }
+  body header .hero-section .hero-text-section .scroll-down svg {
+    animation: glideSortOf 1s infinite alternate-reverse both;
+    width: 30px;
+  }
+  body header .hero-section .hero-text-section .scroll-down svg path {
+    fill: rgb(255, 255, 255);
+  }
+  @keyframes glideSortOf {
+    from {
+      transform: translateY(-5px);
+    }
+    to {
+      transform: translateY(7px);
+    }
+  }
+  body header .hero-section .hero-img-circles {
+    border: 3px olsid rebeccapurple;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+  body header .hero-section .hero-img-circles::before, body header .hero-section .hero-img-circles::after {
+    content: "";
+    position: absolute;
+    background: #D9D9D9;
+    border-radius: 50%;
+    opacity: 0.2;
+    z-index: -1;
+  }
+  body header .hero-section .hero-img-circles::before {
+    width: 32rem;
+    height: 32rem;
+    bottom: -2em;
+  }
+  body header .hero-section .hero-img-circles::after {
+    width: 12.8rem;
+    height: 12.8rem;
+    top: 6em;
+    right: 3.5em;
+  }
+  body header .hero-section .hero-img-circles img.p-absolute {
+    bottom: 0;
+    width: unset;
+    z-index: revert;
+    opacity: revert;
+  }
 }/*# sourceMappingURL=style.css.map */

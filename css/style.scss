@@ -86,6 +86,7 @@ body {
   background-color: $dark-bg;
   font-family: $ff-primary;
   color: $text-white;  
+  overflow-x: hidden;
 }
 
 // body {
@@ -178,7 +179,7 @@ header {
       transform: translateX(100%);
       z-index: 777;
 
-      // General padding for all direct child li's
+      // General padding for all direct child li's except theme-li
       & > *:not(.theme-li) {
         padding: 1em;
         cursor: pointer;
@@ -250,7 +251,7 @@ header {
     // First div in hero-section for the textual content
     .hero-text-section {
       text-align: center;
-      padding: 3em 1.5em;
+      padding: 3em 3em;
       $bg-blue: $text-blue;
 
       // occupation/role
@@ -279,11 +280,11 @@ header {
         & > .hero-link{
           text-decoration: none;
           color: $text-white;
-          padding: .6em 2.5em;
           border-radius: 40px;
         }
 
         .hero-link:first-of-type {
+          padding: .6em 2.5em;
           background-color: $bg-blue;
           border: 2px solid $bg-blue;
         }
@@ -294,10 +295,25 @@ header {
           align-items: center;
           justify-content: center;
           border: 2px solid #fff;
+          position: relative;
+          padding: .6em 3em;
           svg {
             display: inline-block;
+            opacity: 0;
+            transition: transform 200ms;
+            position: absolute;
+            right: 1.5em;
+            transform: translateX(-40px);
             width: 15px;
             fill: $icon-color;
+          }
+
+          &:hover {
+            svg {
+              // position: revert;
+              transform: translateX(0px);
+              opacity: revert;
+            }
           }
         }
       }
@@ -309,14 +325,14 @@ header {
         margin-top: 1em;
 
         svg {
-          animation: glideSortof 1s infinite alternate-reverse both;
+          animation: glideSortOf 1s infinite alternate-reverse both;
           width: 30px;
           path {
             fill: $text-white;
           }
         }
 
-        @keyframes glideSortof {
+        @keyframes glideSortOf {
           from {
             transform: translateY(-5px);
           }
@@ -334,7 +350,7 @@ header {
         // inset: 0;
         bottom: 0;
         z-index: -1;
-        opacity: .5;
+        opacity: .3;
       } 
       
     }
@@ -366,7 +382,7 @@ header {
 }
 
 .nav {
-  // he show class is added to the primary
+  // The show class is added to the primary
   // nav_list ul element after the ham menu is clicked
   ul.show {
     transform: translateX(0%);
@@ -391,6 +407,287 @@ header {
     .theme-li.margin-auto-top {
       margin-block: auto 3em;
      
+    }
+  }
+}
+
+// Now let's get started with the larger screens tablet and desktop
+@media screen and (min-width: 720px) {
+  // Brooooo! this will be fun
+  body {
+    header {
+       .nav {
+    @include flex(space-around, row, unset);
+    position: relative;
+    // border: 3px solid #fff;
+    padding-right: revert;
+
+
+    & > *:not(.hamburger-menu) {
+      padding: 1em;
+    }
+
+    // All ul elements in the nav
+    & > ul {
+      display: flex;
+      list-style-type: none;
+
+      // All li elements in the ul's in the nav
+      li {
+        // All anchor elements in he li's of the nav's uls
+         a {
+          text-decoration: none;
+          color: $text-white-semi-transparent;
+         }
+      }
+
+      // This was an li that was hidden in mobile view
+      .no-mobile-display {
+        display: block;
+        border: 2px solid $text-blue;
+        padding: 0.5em max(1em ,2em);
+        border-radius: 40px;
+        background-color: $text-blue;
+
+        a {
+        color: #fff;
+        }
+      }
+    }
+
+    .logo-div {
+      width: max-content;
+      position: revert;
+      // left: 40%;
+      // bottom: 1.3em;
+
+      a {
+        svg {
+          width: 85px;
+        }
+      }
+    }
+    
+    .nav_list {
+      margin: 0;
+      padding: 0;
+      height: revert;
+      position: revert;
+      flex-direction: row;
+      align-items: center;
+      gap: clamp(1em, calc(10vw / 5), max(2em, 3em));
+      width: revert;
+      background-color: revert;
+      box-shadow: revert;
+      // Hide side bar
+      // transition: ;
+      transform: translateX(0%);
+      z-index: revert;
+
+      // General padding for all direct child li's except theme-li
+      & > *:not(.theme-li) {
+        padding: 0;
+        cursor: pointer;
+        transition: all 350ms;
+      }
+
+      & > *:hover {
+        background-color: revert !important;
+         a {
+          color: $text-white !important;
+         }
+      }
+
+      & > li:has(a[aria-current="page"]) {
+        background-color: revert;
+      }
+
+      & > li a[aria-current="page"] {
+        color: $text-white !important;
+      }
+
+      .margin-auto-top {
+        margin-top: revert;
+      }
+    }
+
+    // Secondary nav-list
+    .two-item-nav_list {
+      @include flex(center, row, 1em);
+      padding-left: min(3em, 1em);
+      .github-link {
+        a {
+          img {
+            width: 40px;
+          }
+        }
+      }
+    }
+
+    // The hamburger menu's codes go here
+    .hamburger-menu {
+      display: none;
+    
+
+      & > * {
+        transition: transform 250ms;
+        height: 5px;
+        border-radius: 5px;
+        background: $text-white;
+      }
+
+      .line2 {
+        width: calc(50px / 2);
+      }
+    }
+  }
+
+    .hero-section {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+
+    // First div in hero-section for the textual content
+    .hero-text-section {
+      text-align: left;
+      padding: 6em 3em 3em;
+      $bg-blue: $text-blue;
+
+      // occupation/role
+      .role {
+        text-transform: uppercase;
+        font-weight: weights(700);
+      }
+
+      .developer-name {
+        text-transform: capitalize;
+        line-height: 1.1;
+        font-size: clamp(3rem, 30%, 7rem);
+        margin: 0.5em 0;
+      }
+
+      .developer-text {
+        text-transform: capitalize;
+        margin: 1.5em 0 2em;
+        line-height: 1.5;
+        font-weight: 300;
+      }
+      .hero-btns {
+        $icon-color: $cool-gray;
+        @include flex(left, row, 1.5em);
+
+        & > .hero-link{
+          text-decoration: none;
+          color: $text-white;
+          border-radius: 40px;
+        }
+
+        .hero-link:first-of-type {
+          padding: .6em 2.5em;
+          background-color: $bg-blue;
+          border: 2px solid $bg-blue;
+        }
+
+        .hero-link:last-of-type {
+          display: flex;
+          gap: .3em;
+          align-items: center;
+          justify-content: center;
+          border: 2px solid #fff;
+          position: relative;
+          padding: .6em 3em;
+          svg {
+            display: inline-block;
+            opacity: 0;
+            transition: transform 200ms;
+            position: absolute;
+            right: 1.5em;
+            transform: translateX(-40px);
+            width: 15px;
+            fill: $icon-color;
+          }
+
+          &:hover {
+            svg {
+              // position: revert;
+              transform: translateX(0px);
+              opacity: revert;
+            }
+          }
+        }
+      }
+
+      .scroll-down {
+        width: fit-content;
+        margin: unset;
+        @include flex(flex-start, row, unset);
+        margin-top: 1.5em;
+
+        .scroll-text {
+          display: none;
+        }
+
+        svg {
+          animation: glideSortOf 1s infinite alternate-reverse both;
+          width: 30px;
+          path {
+            fill: $text-white;
+          }
+        }
+
+        @keyframes glideSortOf {
+          from {
+            transform: translateY(-5px);
+          }
+
+          to {
+            transform: translateY(7px);
+          }
+        }
+      }
+    }
+
+    .hero-img-circles {
+      $pseudo-bg: #D9D9D9;
+      border: 3px olsid rebeccapurple;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        background: $pseudo-bg;
+        border-radius: 50%;
+        opacity: .2;
+        z-index: -1;
+
+      }
+      &::before {
+        width: 32rem;
+        height: 32rem;
+        bottom: -2em;
+      }
+
+      &::after {
+        width: calc(32rem / 2.5);
+        height: calc(32rem / 2.5);
+        // background-color: rebeccapurple;
+        top: 6em;
+        right: 3.5em;
+      }
+      img.p-absolute {
+        // position: revert;
+        // // inset: 0;
+        bottom: 0;
+        width: unset;
+        z-index: revert;
+        opacity: revert;
+      } 
+      
+    }
+
+  }
     }
   }
 }
