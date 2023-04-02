@@ -1,0 +1,52 @@
+$text-blue: #287EFF;
+$blue-shadow: rgb(40 126 255 / .3);
+$dark-bg: #212529;
+// 212529
+$text-white: rgb(255, 255, 255);
+$text-white-semi-transparent: rgb(255 255 244 / .5);
+$text-light-gray: #868E96;
+$cool-gray: #CED4DA;
+$text-dark: #000;
+
+// Main typeface
+$ff-primary: 'Comfortaa', cursive;
+
+// Theme switching
+$light-background: $text-white;
+$light-text: $text-dark;
+$dark-background: $dark-bg;
+$dark-text: $text-white;
+
+@mixin theme-colors($light-theme: false) {
+  @if $light-theme {
+    background-color: $light-background;
+    color: $light-text;
+  } @else {
+    background-color: $dark-background;
+    color: $dark-text;
+  }
+}
+
+// Flexbox mixin
+@mixin flex($justify, $direction, $gap) {
+  display: flex;
+  align-items: center;
+  justify-content: $justify;
+  flex-direction: $direction;
+  gap: $gap;
+}
+
+// Function and object for font weights
+$font-weights: (
+  "light": 300,
+  "regular": 400,
+  "medium": 500,
+  "semi-bold": 600,
+  "bold": 700
+);
+
+// Function to render font weights
+@function weights($weight) {
+  @return map-get($font-weights, $weight)
+}
+

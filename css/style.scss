@@ -1,0 +1,396 @@
+@import './variables';
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+   scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// Utiltity classes
+.hue-blue {
+  color: $text-blue;
+}
+
+// Let's get to it, mobile first!
+body {
+  background-color: $dark-bg;
+  font-family: $ff-primary;
+  color: $text-white;  
+}
+
+// body {
+//   @include theme-colors($light-theme: true);
+//   body.dark & {
+//     @include theme-colors($light-theme: false);
+//   }
+// }
+
+@media (prefers-color-scheme: dark) {
+  .mode-text {
+   fill: #fff;
+  }
+
+   
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: #fff;
+    color: $text-dark;
+  }
+  .mode-text {
+    fill: $dark-bg;
+  }
+
+  .hamburger-menu > * {
+    background: $dark-bg;
+  }
+
+}
+
+header {
+  .nav {
+    @include flex(space-between, row, unset);
+    position: relative;
+    // border: 3px solid #fff;
+    padding-right: 1em;
+
+
+    & > *:not(.hamburger-menu) {
+      padding: 1em;
+    }
+
+    // All ul elements in the nav
+    & > ul {
+      display: flex;
+      list-style-type: none;
+
+      // All li elements in the ul's in the nav
+      li {
+        // All anchor elements in he li's of the nav's uls
+         a {
+          text-decoration: none;
+          color: $text-white-semi-transparent;
+         }
+      }
+
+      .no-mobile-display {
+        display: none;
+      }
+    }
+
+    .logo-div {
+      width: max-content;
+      position: absolute;
+      left: 40%;
+      bottom: 1.3em;
+
+      a {
+        svg {
+          width: 85px;
+        }
+      }
+    }
+    
+    .nav_list {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      position: fixed;
+      right: 0;
+      top: 0;
+      flex-direction: column;
+      gap: 1em;
+      width: 50%;
+      background-color: $dark-bg;
+      // Hide side bar
+      transition: transform 200ms;
+      transform: translateX(100%);
+      z-index: 777;
+
+      // General padding for all direct child li's
+      & > *:not(.theme-li) {
+        padding: 1em;
+        cursor: pointer;
+        transition: all 350ms;
+      }
+
+      & > *:not(.theme-li):hover {
+        background-color: #dee2e6;
+         a {
+          color: $dark-bg !important;
+         }
+      }
+
+      & > li:has(a[aria-current="page"]) {
+        background-color: #dee2e6;
+         a {
+          color: $dark-bg !important;
+         }
+      }
+
+      & > li a[aria-current="page"] {
+        color: $text-white;
+      }
+
+      .margin-auto-top {
+        margin-top: 5em;
+      }
+    }
+
+    // Secondary nav-list
+    .two-item-nav_list {
+      
+      .github-link {
+        a {
+          img {
+            width: 40px;
+          }
+        }
+      }
+    }
+
+    // The hamburger menu's codes go here
+    .hamburger-menu {
+      display: flex;
+      flex-direction: column;
+      gap: .35em;
+      // border: 3px solid aquamarine;
+      width: 50px;
+      cursor: pointer;
+
+      & > * {
+        transition: transform 250ms;
+        height: 5px;
+        border-radius: 5px;
+        background: $text-white;
+      }
+
+      .line2 {
+        width: calc(50px / 2);
+      }
+    }
+  }
+  
+  .hero-section {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+
+    // First div in hero-section for the textual content
+    .hero-text-section {
+      text-align: center;
+      padding: 3em 1.5em;
+      $bg-blue: $text-blue;
+
+      // occupation/role
+      .role {
+        text-transform: uppercase;
+        font-weight: weights(700);
+      }
+
+      .developer-name {
+        text-transform: capitalize;
+        line-height: 1.1;
+        font-size: clamp(2.5rem, 30%, 4rem);
+        margin: 0.5em 0;
+      }
+
+      .developer-text {
+        text-transform: capitalize;
+        margin: 1.5em 0 2em;
+        line-height: 1.5;
+        font-weight: 300;
+      }
+      .hero-btns {
+        $icon-color: $cool-gray;
+        @include flex(center, column, 1em);
+
+        & > .hero-link{
+          text-decoration: none;
+          color: $text-white;
+          padding: .6em 2.5em;
+          border-radius: 40px;
+        }
+
+        .hero-link:first-of-type {
+          background-color: $bg-blue;
+          border: 2px solid $bg-blue;
+        }
+
+        .hero-link:last-of-type {
+          display: flex;
+          gap: .3em;
+          align-items: center;
+          justify-content: center;
+          border: 2px solid #fff;
+          svg {
+            display: inline-block;
+            width: 15px;
+            fill: $icon-color;
+          }
+        }
+      }
+
+      .scroll-down {
+        width: fit-content;
+        margin: 0 auto;
+        @include flex(center, column, 0.5em);
+        margin-top: 1em;
+
+        svg {
+          animation: glideSortof 1s infinite alternate-reverse both;
+          width: 30px;
+          path {
+            fill: $text-white;
+          }
+        }
+
+        @keyframes glideSortof {
+          from {
+            transform: translateY(-5px);
+          }
+
+          to {
+            transform: translateY(7px);
+          }
+        }
+      }
+    }
+
+    .hero-img-circles {
+      img.p-absolute {
+        position: absolute;
+        // inset: 0;
+        bottom: 0;
+        z-index: -1;
+        opacity: .5;
+      } 
+      
+    }
+
+  }
+}
+
+// Classes added via Javascript
+.hamburger-menu.active {
+  z-index: 888;
+
+  // & > :nth-child(1 of .line) {
+  //   display: none;
+  // }
+  .line1 {
+    transform: rotate(.1turn) translateY(7px);
+  }
+
+  .line3 {
+    transform: rotate(-.1turn) translateY(-7px);
+  }
+
+  .line2 {
+    // opacity: 0;
+    display: none;
+  }
+
+
+}
+
+.nav {
+  // he show class is added to the primary
+  // nav_list ul element after the ham menu is clicked
+  ul.show {
+    transform: translateX(0%);
+    box-shadow: -2px 0 20px $blue-shadow;
+
+
+    .theme-li {
+        margin-inline: 1em;
+        
+
+      .theme-btn {
+        border: 2px solid $text-blue;
+        padding: .5em 4em;
+        text-align: center;
+        background-color: $text-blue;
+        border-radius: 40px;
+        color: $text-white;
+        cursor: pointer;
+      }
+    }
+
+    .theme-li.margin-auto-top {
+      margin-block: auto 3em;
+     
+    }
+  }
+}
