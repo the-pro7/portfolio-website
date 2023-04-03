@@ -1,39 +1,29 @@
 console.log('ready to go')
 // Let's select the hamburger menu
-const hamMenu = document.getElementById('menu')
+const hamMenuBtn = document.getElementById('menu')
+// Select the navlist primary from the nav element
 const navListPrimary = document.querySelector('.nav_list')
+// Let's get the github Icon
+const githubIcon = document.querySelector(".github-icon");
 
 // Theme toggler button
  const themeTogglerLi = document.createElement("li");
  themeTogglerLi.classList.add("theme-li", "margin-auto-top");
 
-//  themeTogglerLi.textContent = "Light";
 // next create a button element
 const themeTogglerBtn = document.createElement('button')
 themeTogglerBtn.textContent = 'Light'
  themeTogglerBtn.classList.add("theme-btn");
 //  Append the new button element to the newly created li element
 themeTogglerLi.append(themeTogglerBtn)
-// console.log(hamMenu.firstElementChild.offsetWidth)
-hamMenu.addEventListener('click', () => {
-      hamMenu.classList.toggle('active')
+// console.log(hamMenuBtn.firstElementChild.offsetWidth)
+hamMenuBtn.addEventListener('click', () => {
+      hamMenuBtn.classList.toggle('active')
       navListPrimary.classList.toggle('show')
      
 
       // Append the newwly created li to the primary nav_list
-      navListPrimary.append(themeTogglerLi)
+      navListPrimary.appendChild(themeTogglerLi)
+      // Check window with with checkWindowWidth function
 })
 
-// Code to ad or remove light btn when switching from mobile view to a larger screen size
-window.addEventListener('DOMContentLoaded', () => {
-      if (window.innerWidth >= parseInt('700')) {
-        console.log('Eslla inspired me! Thanks, Eslla!')
-      //   alert(window.innerWidth);
-        console.log("Hello");
-        themeTogglerLi.removeChild(themeTogglerBtn);
-        navListPrimary.removeChild(themeTogglerLi);
-      } else {
-        themeTogglerLi.append(themeTogglerBtn)
-        navListPrimary.append(themeTogglerLi)
-      }
-})

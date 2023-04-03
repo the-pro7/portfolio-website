@@ -114,7 +114,18 @@ body {
   }
 
   .hamburger-menu > * {
-    background: $dark-bg;
+    background: $dark-bg !important;
+  }
+
+  header {
+    .hero-section {
+      .hero-link:last-of-type {
+        border: 2px solid $dark-bg !important;
+        color: $text-dark !important;
+      }
+
+     
+    }
   }
 
 }
@@ -284,7 +295,7 @@ header {
         }
 
         .hero-link:first-of-type {
-          padding: .6em 2.5em;
+          padding: .6em 3.2em;
           background-color: $bg-blue;
           border: 2px solid $bg-blue;
         }
@@ -574,18 +585,20 @@ header {
       }
       .hero-btns {
         $icon-color: $cool-gray;
-        @include flex(left, row, 1.5em);
+        @include flex(unset, row, 1em);
 
         & > .hero-link{
           text-decoration: none;
           color: $text-white;
           border-radius: 40px;
+          text-align: center;
         }
 
         .hero-link:first-of-type {
           padding: .6em 2.5em;
           background-color: $bg-blue;
           border: 2px solid $bg-blue;
+          // min-width: 150px;
         }
 
         .hero-link:last-of-type {
@@ -690,4 +703,14 @@ header {
   }
     }
   }
+}
+
+// Alright let's do it the hard way
+@media screen and (min-width: 721px) {
+    .nav_list:has(.theme-li) {
+      .theme-li {
+        display: none ;
+      }
+  }
+
 }

@@ -99,7 +99,11 @@ body {
     fill: #212529;
   }
   .hamburger-menu > * {
-    background: #212529;
+    background: #212529 !important;
+  }
+  header .hero-section .hero-link:last-of-type {
+    border: 2px solid #212529 !important;
+    color: #000 !important;
   }
 }
 header .nav {
@@ -229,7 +233,7 @@ header .hero-section .hero-text-section .hero-btns > .hero-link {
   border-radius: 40px;
 }
 header .hero-section .hero-text-section .hero-btns .hero-link:first-of-type {
-  padding: 0.6em 2.5em;
+  padding: 0.6em 3.2em;
   background-color: #287EFF;
   border: 2px solid #287EFF;
 }
@@ -445,14 +449,15 @@ header .hero-section .hero-img-circles img.p-absolute {
   body header .hero-section .hero-text-section .hero-btns {
     display: flex;
     align-items: center;
-    justify-content: left;
+    justify-content: unset;
     flex-direction: row;
-    gap: 1.5em;
+    gap: 1em;
   }
   body header .hero-section .hero-text-section .hero-btns > .hero-link {
     text-decoration: none;
     color: rgb(255, 255, 255);
     border-radius: 40px;
+    text-align: center;
   }
   body header .hero-section .hero-text-section .hero-btns .hero-link:first-of-type {
     padding: 0.6em 2.5em;
@@ -541,5 +546,10 @@ header .hero-section .hero-img-circles img.p-absolute {
     width: unset;
     z-index: revert;
     opacity: revert;
+  }
+}
+@media screen and (min-width: 721px) {
+  .nav_list:has(.theme-li) .theme-li {
+    display: none;
   }
 }/*# sourceMappingURL=style.css.map */
