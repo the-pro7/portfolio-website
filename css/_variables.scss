@@ -16,6 +16,7 @@ $light-background: $text-white;
 $light-text: $text-dark;
 $dark-background: $dark-bg;
 $dark-text: $text-white;
+$arrow-fill: $text-white;
 
 @mixin theme-colors($light-theme: false) {
   @if $light-theme {

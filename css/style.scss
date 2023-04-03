@@ -37,6 +37,10 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
+  background-color: $dark-bg;
+  font-family: $ff-primary;
+  color: $text-white;  
+  overflow-x: hidden;
 }
 
 /* A elements that don't have a class get default styles */
@@ -82,12 +86,7 @@ select {
 }
 
 // Let's get to it, mobile first!
-body {
-  background-color: $dark-bg;
-  font-family: $ff-primary;
-  color: $text-white;  
-  overflow-x: hidden;
-}
+
 
 // body {
 //   @include theme-colors($light-theme: true);
@@ -339,7 +338,7 @@ header {
           animation: glideSortOf 1s infinite alternate-reverse both;
           width: 30px;
           path {
-            fill: $text-white;
+            fill: $arrow-fill;
           }
         }
 

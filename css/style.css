@@ -36,6 +36,10 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
+  background-color: #212529;
+  font-family: "Comfortaa", cursive;
+  color: rgb(255, 255, 255);
+  overflow-x: hidden;
 }
 
 /* A elements that don't have a class get default styles */
@@ -76,13 +80,6 @@ select {
 }
 .hue-blue {
   color: #287EFF;
-}
-
-body {
-  background-color: #212529;
-  font-family: "Comfortaa", cursive;
-  color: rgb(255, 255, 255);
-  overflow-x: hidden;
 }
 
 @media (prefers-color-scheme: dark) {
