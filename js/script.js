@@ -24,6 +24,7 @@ hamMenu.addEventListener('click', () => {
       navListPrimary.append(themeTogglerLi)
 })
 
+// Code to ad or remove light btn when switching from mobile view to a larger screen size
 window.addEventListener('DOMContentLoaded', () => {
       if (window.innerWidth >= parseInt('700')) {
         console.log('Eslla inspired me! Thanks, Eslla!')
@@ -31,5 +32,8 @@ window.addEventListener('DOMContentLoaded', () => {
         console.log("Hello");
         themeTogglerLi.removeChild(themeTogglerBtn);
         navListPrimary.removeChild(themeTogglerLi);
+      } else {
+        themeTogglerLi.append(themeTogglerBtn)
+        navListPrimary.append(themeTogglerLi)
       }
 })
